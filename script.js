@@ -1,37 +1,30 @@
 "use strict";
 
-let num = 20;
+const str = "Test";
+console.log(str.length); //4
+console.log(str[2]); //s
+console.log(str.toUpperCase()); //TEST
+console.log(str.toLowerCase()); //test
+console.log(str); //Test
 
-function showFirstMassege(text) {
-    console.log(text);
-    console.log(num);
-    num = 10;
-    console.log(num);
-    // let num = 15;
-}
-showFirstMassege("Hello World!");
-console.log(num);
+const arr = [1, 2, 3];
+console.log(arr.length); //3
 
-function calc(a, b) {
-    return (a + b);
-} //function declaration -> ; не ставиться
-console.log(calc(3, 4));
+const fruit = "Some fruit";
+console.log(fruit.indexOf("fruit")); //5
+console.log(fruit.indexOf("q")); //-1
 
-function ret() {
-    let num = 50;
-    return num;
-}
-const anotherNum = ret();
-console.log(anotherNum);
+const logg = "Hello world!";
+console.log(logg.slice(6, 11)); //world
+console.log(logg.slice(6)); //world!
+console.log(logg.slice(-5, -1)); //orld
+console.log(logg.slice(-6, -1).toUpperCase()); //WORLD
+console.log(logg.substring(6, 11)); //world
+console.log(logg.substr(6, 5)); //world
 
-const logger = function() {
-    console.log("Hello");
-}; //function expretion -> ;
-logger();
+const num = 12.2;
+console.log(Math.round(num)); //12
 
-const calcul = (a, b) => { 
-    console.log('1');
-    return a + b;
-};
-let other = calcul(3, 4);
-console.log(other);
+const test = "12.2px";
+console.log(parseInt(test)); //12
+console.log(parseFloat(test)); //12.2
