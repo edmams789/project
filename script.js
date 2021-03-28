@@ -1,30 +1,67 @@
 "use strict";
 
-const str = "Test";
-console.log(str.length); //4
-console.log(str[2]); //s
-console.log(str.toUpperCase()); //TEST
-console.log(str.toLowerCase()); //test
-console.log(str); //Test
+let numberOfFilms;
 
-const arr = [1, 2, 3];
-console.log(arr.length); //3
+function start() {
+    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
 
-const fruit = "Some fruit";
-console.log(fruit.indexOf("fruit")); //5
-console.log(fruit.indexOf("q")); //-1
+    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+        numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+    }
+} 
+start();
 
-const logg = "Hello world!";
-console.log(logg.slice(6, 11)); //world
-console.log(logg.slice(6)); //world!
-console.log(logg.slice(-5, -1)); //orld
-console.log(logg.slice(-6, -1).toUpperCase()); //WORLD
-console.log(logg.substring(6, 11)); //world
-console.log(logg.substr(6, 5)); //world
+const personalMovieDB = {
+    count: numberOfFilms,
+    movies: {},
+    actors: {},
+    genres: [],
+    privat: false
+};
 
-const num = 12.2;
-console.log(Math.round(num)); //12
+function rememberMyFilms() {
+    for (let i = 0; i < 2; i++) {
+    const a = prompt('Один из последних просмотренных фильмов?', ''),
+          b = prompt('На сколько оцените его?', '');
+    if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+        personalMovieDB.movies[a] = b;
+        console.log('Done!');
+    } else {
+        console.log('Error');
+        i--;
+    }    
+}
+}
+// rememberMyFilms();
 
-const test = "12.2px";
-console.log(parseInt(test)); //12
-console.log(parseFloat(test)); //12.2
+function detectPersonalLevel() {
+    if (personalMovieDB.count < 10) {
+    console.log("Просмотренно довольно мало фильмов");
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+    console.log("Вы классический зритель");
+} else if (personalMovieDB.count >= 30) {
+    console.log("Вы киноман");
+} else {
+    console.log("Произошла ошибка");
+}
+}
+// detectPersonalLevel();
+
+
+
+function showMyDB(hidden) {
+    if (!hidden) { //передаётся значение privat: false
+        console.log(personalMovieDB);
+    }
+}
+showMyDB(personalMovieDB.privat);
+
+function writeYouGenres() {
+    for (let i = 1; i < 4; i++) {        
+        // const genre = prompt(`Ваш любимый ханр под номером ${i}` + "?");
+        // personalMovieDB.genres[i - 1] = genre;
+
+        personalMovieDB.genres[i - 1] = prompt(`Ваш любимый ханр под номером ${i}` + "?");
+    }
+}
+writeYouGenres();
