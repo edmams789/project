@@ -1,45 +1,43 @@
 "use strict";
 
-// const obj = new Object();
+const arr = [1, 2, 3, 6, 8];
+// arr[99] = 0;
+// console.log(arr.length); //100
+// console.log(arr); //[ 1, 2, 3, 6, 8, <94 empty items>, 0 ]
 
-const options = {
-    name: 'test',
-    width: 1024,
-    height: 1024,
-    colors: {
-        border: 'black',
-        bg: 'red'
-    },
-    makeTest: function() { //создание своей функции
-        console.log("Test");
-    }
-};
-options.makeTest();
+// arr.forEach(function(item, i, arr) { //break и continion в цикле forEach не работают
+// console.log(`${i}: ${item} внутри массива ${arr}`);
+// });
+//0: 1 внутри массива 1,2,3,6,8
+//1: 2 внутри массива 1,2,3,6,8
+//2: 3 внутри массива 1,2,3,6,8
+//3: 6 внутри массива 1,2,3,6,8
+//4: 8 внутри массива 1,2,3,6,8
 
-//деструктуризация объекта
-const {border, bg} = options.colors;
-console.log(border);
-console.log(bg);
+// arr.pop(); //[ 1, 2, 3, 6 ]
+// arr.push(10); //[ 1, 2, 3, 6, 8, 10 ]
+// console.log(arr); 
 
-console.log(Object.keys(options));
-console.log(Object.keys(options).length);
+// for (let i = 0; i < arr.length; i++) {
+//     console.log(arr[i]);
+// }
 
-console.log(options.name);
-// console.log(options["colors"]["border"]);
+// for (let value of arr) {
+//     console.log(value);
+// }
 
-// delete options.name;
-// console.log(options);
+const str = prompt("", "");
+const products = str.split(", ");
+// console.log(products);
+products.sort();
+console.log(products.join('; '));
 
-let counter = 0;
-for (let key in options) {
-    if (typeof(options[key]) === 'object') {
-        for (let i in options[key]) {
-            console.log(`Свойство ${i} имеет значение ${options[key][i]}`);
-            counter++;
-        }
-    } else {
-        console.log(`Свойство ${key} имеет значение ${options[key]}`);
-        counter++;
-    }    
+const array = [17, 24, 13, 2, 65, 1, 18];
+array.sort(compareNum);
+console.log(array);
+
+function compareNum(a, b) {
+    return a - b;
 }
-console.log(counter);
+
+//псевдомассив - структура для хранения данных, не имеет методов
