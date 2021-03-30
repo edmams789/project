@@ -1,83 +1,28 @@
 "use strict";
 
-let a = 5,
-b = a;
-b = b + 5;
-console.log(b);
-console.log(a);
+let str = "some";
+let strObj = new String(str);
+console.log(typeof(str));
+console.log(typeof(strObj));
 
-const obj = {
-    a: 5,
-    b: 1
-};
-const copy = obj; //Ссылку
-copy.a = 10;
-console.log(copy); //{ a: 10, b: 1 }
-console.log(obj); //{ a: 10, b: 1 }
+console.dir([1, 2, 3]);
 
-//клонирование объекта - поверхностная копия объекта
-function copy1(mainObj) {
-    let objCopy = {}; // создание нового объекта
-    let key;
-    for (key in mainObj) {
-        objCopy[key] = mainObj[key];
-    }
-    return objCopy;
-}
-const numbers = {
-    a: 2,
-    b: 5,
-    c: {
-        x: 7,
-        y: 4
+const soldier = {
+    health: 400,
+    armor: 100,
+    sayHello: function() {
+        console.log("Hello");
     }
 };
-const newNumbers = copy1(numbers);
-newNumbers.a = 10;
-console.log(numbers); //{ a: 2, b: 5, c: { x: 7, y: 4 } }
-console.log(newNumbers); //{ a: 10, b: 5, c: { x: 7, y: 4 } }
-newNumbers.c.x = 10;
-console.log(numbers); //{ a: 2, b: 5, c: { x: 10, y: 4 } }
-console.log(newNumbers); //{ a: 10, b: 5, c: { x: 10, y: 4 } }
+const john = Object.create(soldier);
 
-const add = {
-    d: 17,
-    e: 20
-};
-//соединяем add с numbers
-console.log(Object.assign(numbers, add)); //{ a: 2, b: 5, c: { x: 10, y: 4 }, d: 17, e: 20 }
-const clone = Object.assign({}, add);
-clone.d = 20;
-console.log(add);
-console.log(clone);
+// const john = {
+//     health: 100
+// };
+//устаревший формат (может встречаться)
+// john.__proto__ = soldier;
 
-const oldArray = ['a', 'b', 'c'];
-//const newArray = oldArray; //создаётся только новая ссылка на массив 
-const newArray = oldArray.slice();
-newArray[1] = 'qwerty';
-console.log(oldArray); //[ 'a', 'b', 'c' ]
-console.log(newArray); //[ 'a', 'qwerty', 'c' ]
-// ... - оператор разворота(разворачивает структуру на отдельные элементы)
-const video = ['youtube', 'vimeo', 'rutube'],
-blogs = ['worldpress', 'livejornal', 'blogger'],
-internet = [...video, ...blogs, 'vk', 'facebook'];
-console.log(internet);
-
-function log(a, b, c) {
-    console.log(a); //2
-    console.log(b); //5
-    console.log(c); //7
-}
-const num = [2, 5, 7];
-log(...num);
-
-const array = ["a", "b"];
-const newAarray = [...array];
-
-const q = {
-one: 1,
-two: 2
-};
-const newObj = {...q};
-
-
+// Object.setPrototypeOf(john, soldier); // == john.__proto__ = soldier;
+// console.log(john);
+// console.log(john.armor);
+john.sayHello();
