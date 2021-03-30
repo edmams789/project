@@ -1,43 +1,83 @@
 "use strict";
 
-const arr = [1, 2, 3, 6, 8];
-// arr[99] = 0;
-// console.log(arr.length); //100
-// console.log(arr); //[ 1, 2, 3, 6, 8, <94 empty items>, 0 ]
+let a = 5,
+b = a;
+b = b + 5;
+console.log(b);
+console.log(a);
 
-// arr.forEach(function(item, i, arr) { //break и continion в цикле forEach не работают
-// console.log(`${i}: ${item} внутри массива ${arr}`);
-// });
-//0: 1 внутри массива 1,2,3,6,8
-//1: 2 внутри массива 1,2,3,6,8
-//2: 3 внутри массива 1,2,3,6,8
-//3: 6 внутри массива 1,2,3,6,8
-//4: 8 внутри массива 1,2,3,6,8
+const obj = {
+    a: 5,
+    b: 1
+};
+const copy = obj; //Ссылку
+copy.a = 10;
+console.log(copy); //{ a: 10, b: 1 }
+console.log(obj); //{ a: 10, b: 1 }
 
-// arr.pop(); //[ 1, 2, 3, 6 ]
-// arr.push(10); //[ 1, 2, 3, 6, 8, 10 ]
-// console.log(arr); 
-
-// for (let i = 0; i < arr.length; i++) {
-//     console.log(arr[i]);
-// }
-
-// for (let value of arr) {
-//     console.log(value);
-// }
-
-const str = prompt("", "");
-const products = str.split(", ");
-// console.log(products);
-products.sort();
-console.log(products.join('; '));
-
-const array = [17, 24, 13, 2, 65, 1, 18];
-array.sort(compareNum);
-console.log(array);
-
-function compareNum(a, b) {
-    return a - b;
+//клонирование объекта - поверхностная копия объекта
+function copy1(mainObj) {
+    let objCopy = {}; // создание нового объекта
+    let key;
+    for (key in mainObj) {
+        objCopy[key] = mainObj[key];
+    }
+    return objCopy;
 }
+const numbers = {
+    a: 2,
+    b: 5,
+    c: {
+        x: 7,
+        y: 4
+    }
+};
+const newNumbers = copy1(numbers);
+newNumbers.a = 10;
+console.log(numbers); //{ a: 2, b: 5, c: { x: 7, y: 4 } }
+console.log(newNumbers); //{ a: 10, b: 5, c: { x: 7, y: 4 } }
+newNumbers.c.x = 10;
+console.log(numbers); //{ a: 2, b: 5, c: { x: 10, y: 4 } }
+console.log(newNumbers); //{ a: 10, b: 5, c: { x: 10, y: 4 } }
 
-//псевдомассив - структура для хранения данных, не имеет методов
+const add = {
+    d: 17,
+    e: 20
+};
+//соединяем add с numbers
+console.log(Object.assign(numbers, add)); //{ a: 2, b: 5, c: { x: 10, y: 4 }, d: 17, e: 20 }
+const clone = Object.assign({}, add);
+clone.d = 20;
+console.log(add);
+console.log(clone);
+
+const oldArray = ['a', 'b', 'c'];
+//const newArray = oldArray; //создаётся только новая ссылка на массив 
+const newArray = oldArray.slice();
+newArray[1] = 'qwerty';
+console.log(oldArray); //[ 'a', 'b', 'c' ]
+console.log(newArray); //[ 'a', 'qwerty', 'c' ]
+// ... - оператор разворота(разворачивает структуру на отдельные элементы)
+const video = ['youtube', 'vimeo', 'rutube'],
+blogs = ['worldpress', 'livejornal', 'blogger'],
+internet = [...video, ...blogs, 'vk', 'facebook'];
+console.log(internet);
+
+function log(a, b, c) {
+    console.log(a); //2
+    console.log(b); //5
+    console.log(c); //7
+}
+const num = [2, 5, 7];
+log(...num);
+
+const array = ["a", "b"];
+const newAarray = [...array];
+
+const q = {
+one: 1,
+two: 2
+};
+const newObj = {...q};
+
+
