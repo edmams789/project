@@ -2,30 +2,71 @@
 
 //DOM - Document Object Model
 
-//getElementById - получить элемент по айдишнику
-const box = document.getElementById('box');
-console.log(box);
+const box = document.getElementById('box'),
+      buttons = document.getElementsByTagName('button'),
+      circles = document.getElementsByClassName('circle'),
+      wrapper = document.querySelector('.wrapper'),
+      hearts = wrapper.querySelectorAll('.heart'),
+      oneHeart = wrapper.querySelector('.heart');
 
-//getElementsByTagName - получаем псевдомассив, даже если есть всего один элем.
-const buttons = document.getElementsByTagName('button'); 
-console.log(buttons);
-console.log(buttons[1]);//получаем 2-ю кнопку
-const buttons1 = document.getElementsByTagName('button')[1];//получ. 2-ю кнопку
-//что бы сделать кокие то действия, нужно обращаться непосредственно к элементу 
-//массива, и даже если он там один
-console.log(buttons[0]);
+// console.dir(box);
+//inline стили перебивают все остальные
+box.style.background = 'blue';
+box.style.width = '500px';
 
-//getElementsByClassName - получить элемент по имени класса
-const circles = document.getElementsByClassName('circle'); //назв. класса
-console.log(circles);
+buttons[1].style.borderRadius = '100%'; //делаем кнопку овальной
+circles[0].style.backgroundColor = 'red';
 
-const hearts = document.querySelectorAll('.heart');
-//querySelectorAll(css selector) - *, div, #id, .class, [name = "value"], :visited
-console.log(hearts);
+//css text
+box.style.cssText = 'background-color: blue; width: 500px';
+// box.style.cssText = `background-color: blue; width: ${num}`;
+
+for (let i = 0; i < hearts.length; i++) {
+    hearts[i].style.backgroundColor = 'blue';
+}
+
 hearts.forEach(item => {
-    console.log(item);
+    item.style.backgroundColor = 'blue';
 });
 
-//querySelector - получить 1-й элемент
-const oneHeart = document.querySelector('.heart');
-console.log(oneHeart);
+const div = document.createElement('div');
+// const text = document.createTextNode('Тут был я');
+
+div.classList.add('black');
+
+//Современные методы для работой со страницей
+
+document.body.append(div); //в тег body в конец добавляем div
+
+wrapper.append('div'); //вставляет в конец
+wrapper.prepend('div'); //вставляет в начало
+
+wrapper.appendChild(div); //устаревший метод
+
+hearts[0].before(div);
+hearts[0].after(div);
+
+wrapper.insertBefore(div, hearts[0]); //div вставить перед hearts[0]
+
+circles[0].remove();
+wrapper.removeChild(hearts[1]); //устаревший метод
+
+hearts[0].replaceWith(circles[0]); //замена 1-е hearts на 1-е circles
+wrapper.replaceChild(circles[0], hearts[0]); //устаревший метод
+
+// div.innerHTML = "Hello World!";
+// div.innerHTML = "<h1>Hello World</h1>";
+div.textContent = "Hello";
+
+//beforebegin - вставить данные HTML непосредственно перед элементом
+div.insertAdjacentHTML("beforebegin", '<h2>Hello</h2>'); 
+//afterbegin - вставить данные HTML в начало элемента
+div.insertAdjacentHTML("afterbegin", '<h2>Hello</h2>'); 
+//beforeend - вставить данные HTML в конец элемента
+div.insertAdjacentHTML("beforeend", '<h2>Hello</h2>');
+//afterend - вставить данные HTML непосредственно после элемента
+div.insertAdjacentHTML("afterend", '<h2>Hello</h2>');
+
+
+
+
