@@ -1,26 +1,28 @@
-" use strict";
+//touchstart
+//touchmove
+//touchend
+//touchenter
+//touchleave
+//touchcancel
 
-//DOM - Document Object Model
+window.addEventListener('DOMContentLoaded', () => {
+    const box = document.querySelector('.box');
+    box.addEventListener('touchstart', (e) => {
+        e.preventDefault();
 
-// console.log(document.body);
-// console.log(document.head);
-// console.log(document.documentElement);
-// console.log(document.body.childNodes);
-// console.log(document.body.firstChild);
-// console.log(document.body.firstElementChild);
-// console.log(document.body.lastChild);
+        console.log('Start');
+        // console.log(e.touches);
+        console.log(e.targetTouches);
+    });
+    box.addEventListener('touchmove', (e) => {
+        e.preventDefault();
 
-// console.log(document.querySelector('#current').parentNode);
-// console.log(document.querySelector('#current').parentNode.parentNode);
-// console.log(document.querySelector('#current').parentElement);
+        // console.log('Move');
+        console.log(e.targetTouches[0].pageX);
+    });
+    // box.addEventListener('touchend', (e) => {
+    //     e.preventDefault();
 
-// console.log(document.querySelector('[data-current = "3"]').nextSibling);
-// console.log(document.querySelector('[data-current = "3"]').previousSibling);
-// console.log(document.querySelector('[data-current = "3"]').nextElementSibling);
-
-for (let node of document.body.childNodes) {
-    if (node.nodeName == '#text') {
-        continue;
-    }
-    console.log(node);
-}
+    //     console.log('End');
+    // });
+});
